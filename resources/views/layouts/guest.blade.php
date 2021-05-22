@@ -17,8 +17,16 @@
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
     <body>
-        <div class="font-sans text-gray-900 antialiased">
-            {{ $slot }}
+        <div id="app" class="font-sans text-gray-900 antialiased">
+            @yield('content')
         </div>
+        <div id="laravel-data" data-laravel="{{ json_encode([
+    'oldInput' => (object) Session::getOldInput(),
+    'errors' => (object) $errors->get('*'),
+    'routes' => collect(Route::getRoutes())->mapWithKeys(function (\Illuminate\Routing\Route $route) { return [$route->getName() => [ 'uri' => '/'.$route->uri(), 'method' => head($route->methods())]]; }),
+    'errors' => $errors->toArray(),
+    'status' => session('status'),
+    'csrf' => csrf_token(),
+]) }}"></div>
     </body>
 </html>

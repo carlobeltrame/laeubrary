@@ -17,20 +17,28 @@
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+        <div id="app" class="min-h-screen bg-gray-100">
+            @php "@include('layouts.navigation')" @endphp
+            <top-navigation></top-navigation>
 
             <!-- Page Heading -->
             <header class="bg-white shadow">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
+                    @yield('header')
                 </div>
             </header>
 
             <!-- Page Content -->
             <main>
-                {{ $slot }}
+                @yield('content')
             </main>
         </div>
+        <div id="laravel-data" data-laravel="{{ json_encode([
+    'oldInput' => (object) Session::getOldInput(),
+    'errors' => (object) $errors->get('*'),
+    'routes' => collect(Route::getRoutes())->mapWithKeys(function (\Illuminate\Routing\Route $route) { return [$route->getName() => [ 'uri' => '/'.$route->uri(), 'method' => head($route->methods())]]; }),
+    'user' => Auth::user(),
+    'csrf' => csrf_token(),
+]) }}"></div>
     </body>
 </html>
