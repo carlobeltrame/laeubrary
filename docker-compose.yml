@@ -30,6 +30,11 @@ services:
       - .:/app
     command: bash -c "npm install && npm run watch"
 
+  mail:
+    image: schickling/mailcatcher:latest
+    ports:
+      - '1080:1080'
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     depends_on:
