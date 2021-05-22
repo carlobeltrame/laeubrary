@@ -41,3 +41,7 @@ services:
       - db
     ports:
       - '8081:80'
+
+  docker-host:
+    image: qoomon/docker-host
+    cap_add: [ 'NET_ADMIN', 'NET_RAW' ]
