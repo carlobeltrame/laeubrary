@@ -1,4 +1,4 @@
-FROM php:7.4.5-apache
+FROM php:8-apache
 
 WORKDIR /var/www
 
@@ -9,8 +9,9 @@ RUN echo "de_CH.UTF-8 UTF-8" >> /etc/locale.gen && echo "fr_CH.UTF-8 UTF-8" >> /
 ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN yes | pecl install xdebug-2.9.6 && docker-php-ext-enable xdebug
-ENV XDEBUG_CONFIG="remote_host=docker-host remote_enable=1"
+RUN yes | pecl install xdebug-3.0.4 && docker-php-ext-enable xdebug && touch /var/log/xdebug.log && chmod a+rw /var/log/xdebug.log
+ENV XDEBUG_MODE="develop,debug"
+ENV XDEBUG_CONFIG="client_host=docker-host log=/var/log/xdebug.log"
 
 RUN docker-php-ext-install pdo pdo_mysql mbstring xml bcmath zip gd
 
