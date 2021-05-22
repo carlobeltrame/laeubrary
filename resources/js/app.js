@@ -1,3 +1,8 @@
-require('./bootstrap');
+import Vue from 'vue'
+import App from './App.vue'
+import './bootstrap.js'
 
-require('alpinejs');
+const app = new Vue({
+    el: '#app',
+    components: { App }
+});
