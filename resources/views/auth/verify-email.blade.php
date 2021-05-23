@@ -1,5 +1,3 @@
-@extends('layouts.guest')
-
-@section('content')
+<x-master>
     <verify-email></verify-email>
-@endsection
+</x-master>

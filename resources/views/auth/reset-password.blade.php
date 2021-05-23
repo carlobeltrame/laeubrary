@@ -1,5 +1,3 @@
-@extends('layouts.guest')
-
-@section('content')
+<x-master>
     <reset-password></reset-password>
-@endsection
+</x-master>

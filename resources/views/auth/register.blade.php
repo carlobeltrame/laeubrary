@@ -1,5 +1,3 @@
-@extends('layouts.guest')
-
-@section('content')
+<x-master>
     <register-screen></register-screen>
-@endsection
+</x-master>

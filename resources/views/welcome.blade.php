@@ -1,1 +1,3 @@
-@extends('layouts.app')
+<x-app>
+    Hello!
+</x-app>
