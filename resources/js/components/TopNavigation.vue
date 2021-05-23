@@ -62,8 +62,8 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}">
         <div class="pt-2 pb-3 space-y-1">
-            <responsive-nav-link :href="route('dashboard')">
-                Dashboard
+            <responsive-nav-link :href="route('home')">
+                Übersicht
             </responsive-nav-link>
         </div>
 
