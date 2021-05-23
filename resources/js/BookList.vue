@@ -1,8 +1,11 @@
 <template>
     <data-table :data="data" :columns="columns" style="max-height: calc(100vh - 100px)">
-        <template #name="{ row: { name } }">
-            {{ name }}
-            <div class="py-3 px-6 border-b border-gray-200 absolute inset-0 bg-white hover:bg-gray-100 flex items-center">{{ name }}</div>
+        <template #name="{ row: { name, id, current_borrowing } }">
+            <span class="opacity-0 select-none">{{ name }}</span>
+            <a :href="'/books/' + id" class="py-3 px-6 border-b border-gray-200 absolute inset-0 bg-white hover:bg-gray-100 flex items-center" :class="{'hover:text-pink-500': current_borrowing, 'hover:text-blue-500': !current_borrowing}">
+                <font-awesome-icon class="hidden md:inline mr-2 opacity-50" :icon="['fas', 'book']"></font-awesome-icon>
+                {{ name }}
+            </a>
         </template>
         <template #current-borrowing="{ row: { current_borrowing } }">
             <div v-if="current_borrowing" class="flex flex-col">
@@ -25,14 +28,14 @@ export default {
             label: 'Name',
             name: 'name',
             classes: 'font-medium sticky left-0 bg-white hover:bg-gray-100 z-10 border-none overflow-hidden overflow-ellipsis',
-            headerClasses: 'sticky left-0 z-20'
+            headerClasses: 'sticky left-0 z-20',
         }, {
             label: 'Beschreibung',
             name: 'description',
-            classes: 'overflow-hidden overflow-ellipsis max-w-lg'
+            classes: 'overflow-hidden overflow-ellipsis max-w-lg',
         }, {
             label: 'Ausgeliehen an',
-            name: 'current_borrowing.'
+            name: 'current_borrowing.',
         }]
     }),
     methods: {
@@ -43,7 +46,7 @@ export default {
         borrowDate (borrowing) {
             if (!borrowing) return ''
             return this.$date(borrowing.created_at).format('DD.MM.YYYY')
-        }
+        },
     }
 }
 </script>

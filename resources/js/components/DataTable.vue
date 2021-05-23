@@ -8,9 +8,16 @@
             </thead>
             <tbody class="text-gray-600 text-sm font-light">
             <tr v-for="row in data" :key="row.id" class="hover:bg-gray-100">
-                <td class="py-3 px-6 text-left whitespace-nowrap border-b border-gray-200" :class="col.classes" v-for="col in columns" :key="col.name">
-                    <slot :name="kebabCase(col.name)" :row="row">{{ row[col.name] }}</slot>
-                </td>
+                <template v-for="col in columns">
+                    <td v-if="col.href" :key="col.name" class="text-left whitespace-nowrap border-b border-gray-200" :class="col.classes">
+                        <a class="py-3 px-6 block w-full h-full" :href="col.href(row)">
+                            <slot :name="kebabCase(col.name)" :row="row">{{ row[col.name] }}</slot>
+                        </a>
+                    </td>
+                    <td v-else class="py-3 px-6 text-left whitespace-nowrap border-b border-gray-200" :class="col.classes" :key="col.name">
+                        <slot :name="kebabCase(col.name)" :row="row">{{ row[col.name] }}</slot>
+                    </td>
+                </template>
             </tr>
             </tbody>
         </table>
