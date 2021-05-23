@@ -17,6 +17,8 @@ Vue.prototype.$window = window
 Vue.prototype.route = function (name, parameters) {
     if (window.Laravel.routes[name] === undefined) {
         console.error('Route not found ', name)
+    } else if (window.Laravel.routes[name].uri === '//') {
+        return '/'
     } else {
         const uri = new URL(
             window.Laravel.routes[name].uri
