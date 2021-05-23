@@ -2,6 +2,9 @@ import Vue from 'vue'
 import './bootstrap.js'
 import dayjs from 'dayjs'
 import clickOutside from './vue-directive-click-outside'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faUserCircle } from '@fortawesome/free-regular-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import TopNavigation from './components/TopNavigation'
 import LoginScreen from './auth/LoginScreen'
 import RegisterScreen from './auth/RegisterScreen'
@@ -65,6 +68,9 @@ Object.defineProperties(Vue.prototype, {
         }
     }
 })
+
+library.add(faUserCircle)
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 const app = new Vue({
     el: '#app',
