@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import './bootstrap.js'
+import dayjs from 'dayjs'
 import clickOutside from './vue-directive-click-outside'
 import TopNavigation from './components/TopNavigation'
 import LoginScreen from './auth/LoginScreen'
@@ -8,6 +9,7 @@ import ForgotPassword from './auth/ForgotPassword'
 import ConfirmPassword from './auth/ConfirmPassword'
 import ResetPassword from './auth/ResetPassword'
 import VerifyEmail from './auth/VerifyEmail'
+import BookList from './BookList'
 
 const element = document.getElementById('laravel-data')
 window.Laravel = JSON.parse(element.getAttribute('data-laravel'))
@@ -56,7 +58,15 @@ Vue.prototype.old = function (name, parameters) {
 
 Vue.directive('click-outside', clickOutside)
 
+Object.defineProperties(Vue.prototype, {
+    $date: {
+        get() {
+            return dayjs
+        }
+    }
+})
+
 const app = new Vue({
     el: '#app',
-    components: { TopNavigation, LoginScreen, RegisterScreen, ForgotPassword, ConfirmPassword, ResetPassword, VerifyEmail }
-});
+    components: { TopNavigation, LoginScreen, RegisterScreen, ForgotPassword, ConfirmPassword, ResetPassword, VerifyEmail, BookList }
+})

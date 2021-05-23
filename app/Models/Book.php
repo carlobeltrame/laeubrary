@@ -13,6 +13,11 @@ class Book extends Model {
         'description',
     ];
 
+    /**
+     * The accessors to append to the model's array form.
+     */
+    protected $appends = [ 'current_borrowing' ];
+
     public function user() {
         return $this->belongsTo(User::class);
     }
@@ -23,5 +28,9 @@ class Book extends Model {
 
     public function borrowers() {
         return $this->hasManyThrough(Borrower::class, Borrowing::class);
+    }
+
+    public function getCurrentBorrowingAttribute() {
+        return $this->borrowings()->latest()->whereNull('returned_at')->first();
     }
 }

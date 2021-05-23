@@ -9,11 +9,18 @@ class Borrowing extends Model
 {
     use HasFactory;
 
+    /**
+     * The relations to eager load on every query.
+     *
+     * @var array
+     */
+    protected $with = ['borrower'];
+
     public function book() {
         return $this->belongsTo(Book::class);
     }
 
-    public function borrowers() {
+    public function borrower() {
         return $this->belongsTo(Borrower::class);
     }
 }
