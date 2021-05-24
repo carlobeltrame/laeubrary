@@ -45,7 +45,7 @@
                 Passwort vergessen?
             </a>
 
-            <submit-button class="ml-3">
+            <submit-button class="ml-3 bg-gray-800 border-transparent text-white hover:bg-gray-700 active:bg-gray-900">
                 Einloggen
             </submit-button>
         </div>

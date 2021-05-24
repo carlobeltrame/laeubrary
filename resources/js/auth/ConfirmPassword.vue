@@ -27,7 +27,7 @@
             </div>
 
             <div class="flex justify-end mt-4">
-                <submit-button>
+                <submit-button class="bg-gray-800 border-transparent text-white hover:bg-gray-700 active:bg-gray-900">
                     Bestätigen
                 </submit-button>
             </div>

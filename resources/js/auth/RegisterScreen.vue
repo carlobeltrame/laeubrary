@@ -50,7 +50,7 @@
                     Hast du bereits ein Konto?
                 </a>
 
-                <submit-button class="ml-4">
+                <submit-button class="ml-4 bg-gray-800 border-transparent text-white hover:bg-gray-700 active:bg-gray-900">
                     Registrieren
                 </submit-button>
             </div>

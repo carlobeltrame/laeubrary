@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import clickOutside from './vue-directive-click-outside'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserCircle } from '@fortawesome/free-regular-svg-icons'
-import { faBook } from '@fortawesome/free-solid-svg-icons'
+import { faBook, faQrcode, faHandHoldingHeart } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import TopNavigation from './components/TopNavigation'
 import LoginScreen from './auth/LoginScreen'
@@ -15,6 +15,10 @@ import ResetPassword from './auth/ResetPassword'
 import VerifyEmail from './auth/VerifyEmail'
 import BookList from './BookList'
 import BookHeader from './components/BookHeader'
+import BookDetail from './components/BookDetail'
+
+library.add(faUserCircle, faBook, faQrcode, faHandHoldingHeart)
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 const element = document.getElementById('laravel-data')
 window.Laravel = JSON.parse(element.getAttribute('data-laravel'))
@@ -71,9 +75,6 @@ Object.defineProperties(Vue.prototype, {
     }
 })
 
-library.add(faUserCircle, faBook)
-Vue.component('font-awesome-icon', FontAwesomeIcon)
-
 const app = new Vue({
     el: '#app',
     components: {
@@ -85,6 +86,7 @@ const app = new Vue({
         ResetPassword,
         VerifyEmail,
         BookList,
-        BookHeader
+        BookHeader,
+        BookDetail,
     }
 })

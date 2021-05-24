@@ -19,7 +19,7 @@
                 <csrf-token />
 
                 <div>
-                    <submit-button>
+                    <submit-button class="bg-gray-800 border-transparent text-white hover:bg-gray-700 active:bg-gray-900">
                         E-Mail erneut senden
                     </submit-button>
                 </div>

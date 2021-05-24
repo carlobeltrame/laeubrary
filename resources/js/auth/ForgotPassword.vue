@@ -27,7 +27,7 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <submit-button>Link senden</submit-button>
+                <submit-button class="bg-gray-800 border-transparent text-white hover:bg-gray-700 active:bg-gray-900">Link senden</submit-button>
             </div>
         </form>
     </auth-card>
