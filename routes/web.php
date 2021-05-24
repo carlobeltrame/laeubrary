@@ -20,6 +20,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('books', \App\Http\Controllers\BookController::class);
 
     Route::post('/borrowings/{borrowing}/return', [\App\Http\Controllers\BorrowingController::class, 'return'])->name('borrowings.return');
+    Route::resource('borrowings', \App\Http\Controllers\BorrowingController::class);
 
 });
 

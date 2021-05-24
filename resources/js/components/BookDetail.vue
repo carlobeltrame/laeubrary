@@ -3,7 +3,18 @@
         <div class="sm:float-right sm:ml-5 mb-5 sm:w-auto bg-gray-100 rounded-lg text-left overflow-hidden sm:max-w-md sm:w-full shadow-md">
             <div class="px-4 py-3 sm:px-6 sm:flex sm:flex-row">
                 <submit-button class="px-5 py-3 flex-grow inline-flex justify-center bg-white border-gray-300 text-gray-600 hover:bg-gray-200 active:bg-gray-200 sm:ml-3 w-full sm:w-auto"><font-awesome-icon class="mr-2 opacity-70" icon="qrcode" /> QR-Code</submit-button>
-                <submit-button class="mt-3 sm:mt-0 px-5 py-3 flex-grow inline-flex justify-center bg-blue-50 border-blue-300 text-blue-600 hover:bg-blue-100 active:bg-blue-200 sm:ml-3 w-full sm:w-auto"><font-awesome-icon class="mr-2 opacity-70" icon="hand-holding-heart"></font-awesome-icon> Ausleihen</submit-button>
+
+                <modal-dialog :formmethod="routeMethod('borrowings.store')" :formaction="route('borrowings.store')" class="mt-3 sm:mt-0 flex-grow sm:ml-3 sm:w-auto">
+                    <template #activator="{ onClick }">
+                        <submit-button @click="onClick" class="px-5 py-3 inline-flex justify-center bg-blue-50 border-blue-300 text-blue-600 hover:bg-blue-100 active:bg-blue-200 w-full"><font-awesome-icon class="mr-2 opacity-70" icon="hand-holding-heart"></font-awesome-icon> Ausleihen</submit-button>
+                    </template>
+
+                    <template #header><p class="text-lg font-medium leading-6 text-gray-900"><font-awesome-icon class="mr-2 opacity-70" icon="hand-holding-heart"></font-awesome-icon> {{ book.name }} ausleihen</p></template>
+
+                    Hello world
+
+                    <template #submit><submit-button class="ml-3 bg-blue-800 border-transparent text-white hover:bg-blue-700 active:bg-blue-900"><font-awesome-icon class="mr-2 opacity-90" icon="hand-holding-heart"></font-awesome-icon> Ausleihen</submit-button></template>
+                </modal-dialog>
             </div>
         </div>
 
@@ -35,9 +46,10 @@
 import DataTable from './DataTable'
 import SubmitButton from './SubmitButton'
 import CsrfToken from './CsrfToken'
+import ModalDialog from './ModalDialog'
 export default {
     name: 'BookDetail',
-    components: { CsrfToken, SubmitButton, DataTable },
+    components: { ModalDialog, CsrfToken, SubmitButton, DataTable },
     props: {
         book: { type: Object, required: true }
     },
