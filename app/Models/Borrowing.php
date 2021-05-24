@@ -9,7 +9,7 @@ class Borrowing extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['returned_at'];
+    protected $fillable = ['book_id', 'borrower_id', 'returned_at'];
 
     /**
      * The relations to eager load on every query.

@@ -30,9 +30,10 @@
                         <template #afterlist>
                             <button class="flex px-3 py-2 w-full text-gray-500 items-center justify-start cursor-pointer hover:bg-gray-200 z-20" tabindex="-1" @click.prevent @mousedown.prevent.stop="addNewBorrower">Neue Person erfassen...</button>
                         </template>
-                    </multi-select><input v-else ref="newBorrowerName" type="text" name="newBorrowername" v-model="newBorrower" class="w-full mb-2 rounded" style="height: 54.5px" @input="newBorrowerUpdated" /> möchte <span class="font-semibold text-gray-700">{{ book.name }}</span> ausleihen.
+                    </multi-select><input v-else ref="newBorrowerName" type="text" name="new_borrower_name" v-model="newBorrower" class="w-full mb-2 rounded" style="height: 54.5px" @input="newBorrowerUpdated" /> möchte <span class="font-semibold text-gray-700">{{ book.name }}</span> ausleihen.
 
-                    <input v-if="!newBorrower" type="hidden" name="borrowerId" :value="selectedBorrower" />
+                    <input type="hidden" name="book_id" :value="book.id" />
+                    <input v-if="!newBorrower" type="hidden" name="borrower_id" :value="selectedBorrower" />
 
                     <template #submit><submit-button class="ml-3 bg-blue-800 border-transparent text-white hover:bg-blue-700 active:bg-blue-900"><font-awesome-icon class="mr-2 opacity-90" icon="hand-holding-heart"></font-awesome-icon> Ausleihen</submit-button></template>
                 </modal-dialog>
