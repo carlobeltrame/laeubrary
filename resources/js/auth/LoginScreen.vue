@@ -40,6 +40,9 @@
             </label>
         </div>
 
+        <!-- Hash from original URL -->
+        <input type="hidden" name="url_hash" :value="hashFromUrl">
+
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 hover:text-gray-900" :href="route('password.request')">
                 Passwort vergessen?
@@ -63,6 +66,11 @@ import AuthValidationErrors from '../components/AuthValidationErrors'
 import AuthSessionStatus from '../components/AuthSessionStatus'
 export default {
     name: 'LoginScreen',
-    components: { AuthSessionStatus, AuthValidationErrors, SubmitButton, InputField, InputLabel, AuthCard, CsrfToken, ApplicationLogo }
+    components: { AuthSessionStatus, AuthValidationErrors, SubmitButton, InputField, InputLabel, AuthCard, CsrfToken, ApplicationLogo },
+    computed: {
+        hashFromUrl () {
+            return window.location.hash.substring(1)
+        }
+    }
 }
 </script>

@@ -32,7 +32,9 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        $response = redirect()->intended(RouteServiceProvider::HOME);
+        $response->setTargetUrl($response->getTargetUrl() . '#' . urlencode($request->url_hash));
+        return $response;
     }
 
     /**
