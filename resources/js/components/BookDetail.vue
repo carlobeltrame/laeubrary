@@ -2,21 +2,39 @@
     <div>
         <div class="sm:float-right sm:ml-5 mb-5 sm:w-auto bg-gray-100 rounded-lg text-left overflow-hidden sm:max-w-md sm:w-full shadow-md">
             <div class="px-4 py-3 sm:px-6 sm:flex sm:flex-row">
-                <submit-button class="px-5 py-3 flex-grow inline-flex justify-center bg-white border-gray-300 text-gray-600 hover:bg-gray-200 active:bg-gray-200 sm:ml-3 w-full sm:w-auto"><font-awesome-icon class="mr-2 opacity-70" icon="qrcode" /> QR-Code</submit-button>
 
-                <modal-dialog :formmethod="routeMethod('borrowings.store')" :formaction="route('borrowings.store')" class="mt-3 sm:mt-0 flex-grow sm:ml-3 sm:w-auto">
+                <modal-dialog class="mt-3 sm:mt-0 flex-grow sm:ml-3 sm:w-auto" :cancel="false">
+                    <template #activator="{ onClick }">
+                        <submit-button class="px-5 py-3 flex-grow inline-flex justify-center bg-white border-gray-300 text-gray-600 hover:bg-gray-200 active:bg-gray-200 w-full" @click="onClick"><font-awesome-icon class="mr-2 opacity-70" icon="qrcode" /> QR-Code</submit-button>
+                    </template>
+
+                    <template #header><p class="text-lg font-medium leading-6 text-gray-900"><font-awesome-icon class="mr-2 opacity-70" icon="qrcode"></font-awesome-icon> QR-Code für {{ book.name }}</p></template>
+
+                    <div class="flex flex-col items-center">
+                        <qrcode-vue class="mb-4" :value="qrCodeLocation" size="300" level="H" />
+                        <a :href="qrCodeLocation">{{ qrCodeLocation }}</a>
+                    </div>
+                </modal-dialog>
+
+                <modal-dialog :formmethod="routeMethod('borrowings.store')" :formaction="route('borrowings.store')" anchor="borrow" class="mt-3 sm:mt-0 flex-grow sm:ml-3 sm:w-auto">
                     <template #activator="{ onClick }">
                         <submit-button @click="onClick" class="px-5 py-3 inline-flex justify-center bg-blue-50 border-blue-300 text-blue-600 hover:bg-blue-100 active:bg-blue-200 w-full"><font-awesome-icon class="mr-2 opacity-70" icon="hand-holding-heart"></font-awesome-icon> Ausleihen</submit-button>
                     </template>
 
                     <template #header><p class="text-lg font-medium leading-6 text-gray-900"><font-awesome-icon class="mr-2 opacity-70" icon="hand-holding-heart"></font-awesome-icon> {{ book.name }} ausleihen</p></template>
 
+                    <div v-if="book.current_borrowing" class="flex flex-col mt-4 mb-6 p-3 bg-red-200 rounded md:mt-0">
+                        <span>Aktuell ausgeliehen an:</span>
+                        <div class="font-medium text-gray-500 mt-2"><font-awesome-icon class="mr-1" :icon="['far', 'user-circle']" /> {{ borrower(book.current_borrowing) }}</div>
+                        <div class="text-xs mt-2"><span class="font-handwriting">{{ borrowDate(book.current_borrowing) }}</span></div>
+                    </div>
+
                     <multi-select
                         v-if="!newBorrower"
                         ref="borrowerSelect"
                         v-model="selectedBorrower"
                         :options="fetchOptions"
-                        :delay="100"
+                        :delay="500"
                         :filter-results="false"
                         label="name"
                         valueProp="id"
@@ -70,9 +88,11 @@ import SubmitButton from './SubmitButton'
 import CsrfToken from './CsrfToken'
 import ModalDialog from './ModalDialog'
 import MultiSelect from '@vueform/multiselect/dist/multiselect.vue2.js'
+import QrcodeVue from 'qrcode.vue'
+
 export default {
     name: 'BookDetail',
-    components: { ModalDialog, CsrfToken, SubmitButton, DataTable, MultiSelect },
+    components: { ModalDialog, CsrfToken, SubmitButton, DataTable, MultiSelect, QrcodeVue },
     props: {
         book: { type: Object, required: true },
     },
@@ -100,6 +120,11 @@ export default {
             return (this.book.borrowings || []).sort((a, b) => {
                 return this.$date(b.created_at).unix() - this.$date(a.created_at).unix()
             })
+        },
+        qrCodeLocation () {
+            const location = new URL(window.location)
+            location.hash = '#borrow'
+            return location.toString()
         }
     },
     methods: {

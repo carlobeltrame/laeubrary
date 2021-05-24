@@ -13,7 +13,7 @@
                             <font-awesome-icon icon="times"></font-awesome-icon>
                         </div>
                     </div>
-                    <form :method="formmethod" :action="formaction" class="w-full">
+                    <form v-if="formaction" :method="formmethod" :action="formaction" class="w-full">
                         <csrf-token />
                         <!--Body-->
                         <div class="py-5">
@@ -21,12 +21,25 @@
                         </div>
                         <!--Footer-->
                         <div class="flex justify-end pt-2">
-                            <submit-button class="bg-white border-gray-300 text-gray-500 hover:bg-gray-200 active:bg-gray-200" @click.prevent="close">Abbrechen</submit-button>
+                            <submit-button v-if="cancel" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-200 active:bg-gray-200" @click.prevent="close">Abbrechen</submit-button>
+                            <slot name="submit">
+                                <submit-button class="ml-3 bg-blue-800 border-transparent text-white hover:bg-blue-700 active:bg-blue-900">OK</submit-button>
+                            </slot>
+                        </div>
+                    </form>
+                    <div v-else>
+                        <!--Body-->
+                        <div class="py-5">
+                            <slot></slot>
+                        </div>
+                        <!--Footer-->
+                        <div class="flex justify-end pt-2">
+                            <submit-button v-if="cancel" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-200 active:bg-gray-200" @click.prevent="close">Abbrechen</submit-button>
                             <slot name="submit">
                                 <submit-button class="ml-3 bg-blue-800 border-transparent text-white hover:bg-blue-700 active:bg-blue-900" @click="close">OK</submit-button>
                             </slot>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -42,9 +55,11 @@ export default {
         title: { type: String, default: '' },
         formmethod: { type: String, default: 'POST' },
         formaction: { type: String, default: '' },
+        anchor: { type: String, default: '' },
+        cancel: { type: Boolean, default: true },
     },
     data: () => ({
-        isOpen: false
+        isOpen: false,
     }),
     methods: {
         open () {
@@ -53,6 +68,9 @@ export default {
         close () {
             this.isOpen = false
         }
+    },
+    mounted () {
+        this.isOpen = '#' + this.anchor === window.location.hash
     }
 }
 </script>
