@@ -21,9 +21,12 @@
 
             <template #created-at="{ row: { created_at } }"><span class="font-handwriting">{{ $date(created_at).format('DD.MM.YYYY') }}</span></template>
 
-            <template #returned-at="{ row: { returned_at } }">
+            <template #returned-at="{ row: { returned_at, id } }">
                 <span v-if="returned_at" class="font-handwriting">{{ $date(returned_at).format('DD.MM.YYYY') }}</span>
-                <submit-button v-else class="bg-white border-gray-300 text-gray-500 hover:bg-gray-200 active:bg-gray-200">Zurückgegeben</submit-button>
+                <form v-else :method="routeMethod('borrowings.return')" :action="route('borrowings.return', { borrowing: id })">
+                    <csrf-token />
+                    <submit-button class="bg-white border-gray-300 text-gray-500 hover:bg-gray-200 active:bg-gray-200">Zurückgegeben</submit-button>
+                </form>
             </template>
         </data-table>
     </div>
@@ -31,9 +34,10 @@
 <script>
 import DataTable from './DataTable'
 import SubmitButton from './SubmitButton'
+import CsrfToken from './CsrfToken'
 export default {
     name: 'BookDetail',
-    components: { SubmitButton, DataTable },
+    components: { CsrfToken, SubmitButton, DataTable },
     props: {
         book: { type: Object, required: true }
     },

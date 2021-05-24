@@ -9,6 +9,8 @@ class Borrowing extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['returned_at'];
+
     /**
      * The relations to eager load on every query.
      *
