@@ -46,7 +46,7 @@
         <data-table v-if="borrowings.length" :data="borrowings" :columns="columns" class="mt-6" style="max-height: calc(100vh - 100px)">
             <template #name="{ row: borrowing }">
                 <span class="opacity-0 select-none">{{ borrower(borrowing) }}</span>
-                <a :href="'/borrowers/' + borrowing.id" class="py-3 px-6 border-b border-gray-200 absolute inset-0 bg-white hover:bg-gray-100 flex items-center font-medium" :class="{'hover:text-pink-500': !borrowing.returned_at, 'hover:text-blue-500': borrowing.returned_at}">
+                <a class="py-3 px-6 border-b border-gray-200 absolute inset-0 bg-white hover:bg-gray-100 flex items-center font-medium" :class="{'hover:text-pink-500': !borrowing.returned_at, 'hover:text-blue-500': borrowing.returned_at}">
                     <font-awesome-icon class="hidden md:inline mr-2 opacity-70" :icon="['far', 'user-circle']"></font-awesome-icon>
                     {{ borrower(borrowing) }}
                 </a>

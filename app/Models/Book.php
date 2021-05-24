@@ -11,6 +11,7 @@ class Book extends Model {
     protected $fillable = [
         'name',
         'description',
+        'user_id',
     ];
 
     /**

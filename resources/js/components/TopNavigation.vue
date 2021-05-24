@@ -20,7 +20,12 @@
             </div>
 
             <!-- Settings Dropdown -->
+
             <div class="hidden sm:flex sm:items-center sm:ml-6">
+                <a :href="route('books.create')" class="mr-10 flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                    <div class="pt-1"><font-awesome-icon class="mr-1 opacity-80" icon="book-medical"></font-awesome-icon> Neues Buch</div>
+                </a>
+
                 <dropdown-menu align="right" width="48">
                     <template #trigger>
                         <button class="flex items-center text-lg font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">

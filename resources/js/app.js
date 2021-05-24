@@ -5,7 +5,7 @@ import clickOutside from './vue-directive-click-outside'
 import VueCompositionAPI from '@vue/composition-api'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserCircle } from '@fortawesome/free-regular-svg-icons'
-import { faBook, faQrcode, faHandHoldingHeart, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faBook, faQrcode, faHandHoldingHeart, faTimes, faBookMedical } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import TopNavigation from './components/TopNavigation'
 import LoginScreen from './auth/LoginScreen'
@@ -17,8 +17,9 @@ import VerifyEmail from './auth/VerifyEmail'
 import BookList from './BookList'
 import BookHeader from './components/BookHeader'
 import BookDetail from './components/BookDetail'
+import BookCreate from './components/BookCreate'
 
-library.add(faUserCircle, faBook, faQrcode, faHandHoldingHeart, faTimes)
+library.add(faUserCircle, faBook, faQrcode, faHandHoldingHeart, faTimes, faBookMedical)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 const element = document.getElementById('laravel-data')
@@ -91,5 +92,6 @@ const app = new Vue({
         BookList,
         BookHeader,
         BookDetail,
+        BookCreate,
     }
 })
