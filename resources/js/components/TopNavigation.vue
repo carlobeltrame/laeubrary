@@ -12,7 +12,7 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex text-xl">
                     <nav-link :href="route('home')">
                         Läubrary
                     </nav-link>
@@ -23,7 +23,7 @@
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <dropdown-menu align="right" width="48">
                     <template #trigger>
-                        <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                        <button class="flex items-center text-lg font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                             <div class="font-handwriting pt-1">{{ $window.Laravel.user.name }}</div>
 
                             <div class="ml-1">
@@ -76,8 +76,8 @@
                     </svg>
                 </div>
 
-                <div class="ml-3">
-                    <div class="font-handwriting text-base text-gray-800">{{ $window.Laravel.user.name }}</div>
+                <div class="ml-3 text-lg">
+                    <div class="font-handwriting text-gray-800">{{ $window.Laravel.user.name }}</div>
                     <div class="font-medium text-sm text-gray-500">{{ $window.Laravel.user.email }}</div>
                 </div>
             </div>

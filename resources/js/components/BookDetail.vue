@@ -3,7 +3,7 @@
         <div class="sm:float-right sm:ml-5 mb-5 sm:w-auto bg-gray-100 rounded-lg text-left overflow-hidden sm:max-w-md sm:w-full shadow-md">
             <div class="px-4 py-3 sm:px-6 sm:flex sm:flex-row">
                 <submit-button class="px-5 py-3 flex-grow inline-flex justify-center bg-white border-gray-300 text-gray-600 hover:bg-gray-200 active:bg-gray-200 sm:ml-3 w-full sm:w-auto"><font-awesome-icon class="mr-2 opacity-70" icon="qrcode" /> QR-Code</submit-button>
-                <submit-button class="mt-3 sm:mt-0 px-5 py-3 flex-grow inline-flex justify-center bg-white border-gray-300 text-gray-600 hover:bg-gray-200 active:bg-gray-200 sm:ml-3 w-full sm:w-auto"><font-awesome-icon class="mr-2 opacity-70" icon="hand-holding-heart"></font-awesome-icon> Ausleihen</submit-button>
+                <submit-button class="mt-3 sm:mt-0 px-5 py-3 flex-grow inline-flex justify-center bg-blue-50 border-blue-300 text-blue-600 hover:bg-blue-100 active:bg-blue-200 sm:ml-3 w-full sm:w-auto"><font-awesome-icon class="mr-2 opacity-70" icon="hand-holding-heart"></font-awesome-icon> Ausleihen</submit-button>
             </div>
         </div>
 
@@ -19,10 +19,10 @@
                 </a>
             </template>
 
-            <template #created-at="{ row: { created_at } }">{{ $date(created_at).format('DD.MM.YYYY') }}</template>
+            <template #created-at="{ row: { created_at } }"><span class="font-handwriting">{{ $date(created_at).format('DD.MM.YYYY') }}</span></template>
 
             <template #returned-at="{ row: { returned_at } }">
-                <span v-if="returned_at">{{ $date(returned_at).format('DD.MM.YYYY') }}</span>
+                <span v-if="returned_at" class="font-handwriting">{{ $date(returned_at).format('DD.MM.YYYY') }}</span>
                 <submit-button v-else class="bg-white border-gray-300 text-gray-500 hover:bg-gray-200 active:bg-gray-200">Zurückgegeben</submit-button>
             </template>
         </data-table>
@@ -46,11 +46,11 @@ export default {
         }, {
             label: 'Datum',
             name: 'created_at',
-            classes: '',
+            classes: 'text-xs',
         }, {
             label: 'Zurück',
             name: 'returned_at',
-            classes: '',
+            classes: 'text-sm',
         }],
     }),
     computed: {
