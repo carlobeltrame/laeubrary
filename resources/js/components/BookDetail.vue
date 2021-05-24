@@ -15,7 +15,11 @@
                         v-if="!newBorrower"
                         ref="borrowerSelect"
                         v-model="selectedBorrower"
-                        :options="borrowers"
+                        :options="fetchOptions"
+                        :delay="100"
+                        :filter-results="false"
+                        label="name"
+                        valueProp="id"
                         searchable
                         required
                         :can-deselect="false"
@@ -87,7 +91,6 @@ export default {
             classes: 'text-sm',
         }],
         selectedBorrower: null,
-        borrowers: [{ value: 1, label: 'Test 1' }, { value: 2, label: 'Test 2' }, { value: 3, label: 'Test 3' }, { value: 4, label: 'Test 4' }, { value: 5, label: 'Test 5' }],
         borrowerQuery: '',
         newBorrower: '',
     }),
@@ -110,9 +113,13 @@ export default {
         borrowerSearchUpdated (query) {
             this.borrowerQuery = query
         },
+        async fetchOptions (query) {
+            if (!query) return (await window.axios.get('/borrowers')).data
+            return (await window.axios.get('/borrowers?query=' + query)).data
+        },
         addNewBorrower () {
             const emptyQuery = !this.borrowerQuery
-            this.newBorrower = this.borrowerQuery || 'Name'
+            this.newBorrower = this.borrowerQuery || 'Name eingeben...'
             this.selectedBorrower = null
             this.$nextTick(() => {
                 this.$refs.newBorrowerName.focus()

@@ -22,6 +22,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/borrowings/{borrowing}/return', [\App\Http\Controllers\BorrowingController::class, 'return'])->name('borrowings.return');
     Route::resource('borrowings', \App\Http\Controllers\BorrowingController::class);
 
+    Route::resource('borrowers', \App\Http\Controllers\BorrowerController::class);
+
 });
 
 require __DIR__.'/auth.php';
