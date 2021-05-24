@@ -11,7 +11,24 @@
 
                     <template #header><p class="text-lg font-medium leading-6 text-gray-900"><font-awesome-icon class="mr-2 opacity-70" icon="hand-holding-heart"></font-awesome-icon> {{ book.name }} ausleihen</p></template>
 
-                    Hello world
+                    <multi-select
+                        v-if="!newBorrower"
+                        ref="borrowerSelect"
+                        v-model="selectedBorrower"
+                        :options="borrowers"
+                        searchable
+                        required
+                        :can-deselect="false"
+                        no-results-text="Niemand gefunden."
+                        class="mb-2"
+                        @search-change="borrowerSearchUpdated"
+                    >
+                        <template #afterlist>
+                            <button class="flex px-3 py-2 w-full text-gray-500 items-center justify-start cursor-pointer hover:bg-gray-200 z-20" tabindex="-1" @click.prevent @mousedown.prevent.stop="addNewBorrower">Neue Person erfassen...</button>
+                        </template>
+                    </multi-select><input v-else ref="newBorrowerName" type="text" name="newBorrowername" v-model="newBorrower" class="w-full mb-2 rounded" style="height: 54.5px" @input="newBorrowerUpdated" /> möchte <span class="font-semibold text-gray-700">{{ book.name }}</span> ausleihen.
+
+                    <input v-if="!newBorrower" type="hidden" name="borrowerId" :value="selectedBorrower" />
 
                     <template #submit><submit-button class="ml-3 bg-blue-800 border-transparent text-white hover:bg-blue-700 active:bg-blue-900"><font-awesome-icon class="mr-2 opacity-90" icon="hand-holding-heart"></font-awesome-icon> Ausleihen</submit-button></template>
                 </modal-dialog>
@@ -47,11 +64,12 @@ import DataTable from './DataTable'
 import SubmitButton from './SubmitButton'
 import CsrfToken from './CsrfToken'
 import ModalDialog from './ModalDialog'
+import MultiSelect from '@vueform/multiselect/dist/multiselect.vue2.js'
 export default {
     name: 'BookDetail',
-    components: { ModalDialog, CsrfToken, SubmitButton, DataTable },
+    components: { ModalDialog, CsrfToken, SubmitButton, DataTable, MultiSelect },
     props: {
-        book: { type: Object, required: true }
+        book: { type: Object, required: true },
     },
     data: () => ({
         columns: [{
@@ -68,6 +86,10 @@ export default {
             name: 'returned_at',
             classes: 'text-sm',
         }],
+        selectedBorrower: null,
+        borrowers: [{ value: 1, label: 'Test 1' }, { value: 2, label: 'Test 2' }, { value: 3, label: 'Test 3' }, { value: 4, label: 'Test 4' }, { value: 5, label: 'Test 5' }],
+        borrowerQuery: '',
+        newBorrower: '',
     }),
     computed: {
         borrowings () {
@@ -84,6 +106,27 @@ export default {
         borrowDate (borrowing) {
             if (!borrowing) return ''
             return this.$date(borrowing.created_at).format('DD.MM.YYYY')
+        },
+        borrowerSearchUpdated (query) {
+            this.borrowerQuery = query
+        },
+        addNewBorrower () {
+            const emptyQuery = !this.borrowerQuery
+            this.newBorrower = this.borrowerQuery || 'Name'
+            this.selectedBorrower = null
+            this.$nextTick(() => {
+                this.$refs.newBorrowerName.focus()
+                if (emptyQuery) {
+                    this.$refs.newBorrowerName.select()
+                }
+            })
+        },
+        newBorrowerUpdated () {
+            if (!this.newBorrower) {
+                this.$nextTick(() => {
+                    this.$refs.borrowerSelect.open()
+                })
+            }
         },
     }
 }

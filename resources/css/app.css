@@ -3,6 +3,7 @@
 @import 'tailwindcss/utilities';
 
 @import './merriweather.css';
+@import './multiselect.css';
 
 @font-face {
     font-family: 'FrauLaeubli';

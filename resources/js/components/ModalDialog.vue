@@ -1,8 +1,8 @@
 <template>
     <div>
         <slot name="activator" :onClick="open"></slot>
-        <div class="modal fixed w-full inset-0 z-50 overflow-hidden flex-col justify-center items-center animated fadeIn faster" :class="{ flex: isOpen, hidden: !isOpen }" style="background: rgba(0,0,0,.7);" @click="close">
-            <div class="border border-blue-500 shadow-lg modal-container bg-white w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12 xl:w-4/12 mx-auto rounded-xl shadow-lg z-50 overflow-y-auto">
+        <div class="modal fixed w-full inset-0 z-50 overflow-hidden flex-col justify-center items-center animated fadeIn faster" :class="{ flex: isOpen, hidden: !isOpen }" style="background: rgba(0,0,0,.7);">
+            <div class="shadow-lg modal-container bg-white w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12 xl:w-4/12 mx-auto rounded-xl shadow-lg z-50">
                 <div class="modal-content py-4 text-left px-6">
                     <!--Title-->
                     <div class="flex justify-between items-center pb-3">

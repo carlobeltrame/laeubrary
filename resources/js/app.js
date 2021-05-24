@@ -2,6 +2,7 @@ import Vue from 'vue'
 import './bootstrap.js'
 import dayjs from 'dayjs'
 import clickOutside from './vue-directive-click-outside'
+import VueCompositionAPI from '@vue/composition-api'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserCircle } from '@fortawesome/free-regular-svg-icons'
 import { faBook, faQrcode, faHandHoldingHeart, faTimes } from '@fortawesome/free-solid-svg-icons'
@@ -66,6 +67,8 @@ Vue.prototype.old = function (name, parameters) {
 }
 
 Vue.directive('click-outside', clickOutside)
+
+Vue.use(VueCompositionAPI)
 
 Object.defineProperties(Vue.prototype, {
     $date: {
