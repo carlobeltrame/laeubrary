@@ -28,20 +28,16 @@
     </div>
 </template>
 <script>
-import DataTable from './DataTable'
 import SubmitButton from './SubmitButton'
 import CsrfToken from './CsrfToken'
 import ModalDialog from './ModalDialog'
-import MultiSelect from '@vueform/multiselect/dist/multiselect.vue2.js'
 import InputLabel from './InputLabel'
 import AuthValidationErrors from './AuthValidationErrors'
 import InputField from './InputField'
+
 export default {
-    name: 'BookDetail',
-    components: { InputField, AuthValidationErrors, InputLabel, ModalDialog, CsrfToken, SubmitButton, DataTable, MultiSelect },
-    props: {
-        book: { type: Object, required: true },
-    },
+    name: 'BookCreate',
+    components: { InputField, AuthValidationErrors, InputLabel, ModalDialog, CsrfToken, SubmitButton },
     data: () => ({
         columns: [{
             label: 'Ausgeliehen an',
