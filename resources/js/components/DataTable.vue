@@ -7,7 +7,7 @@
             </tr>
             </thead>
             <tbody class="text-gray-600 text-sm font-light">
-            <tr v-for="row in data" :key="row.id" class="hover:bg-gray-100">
+            <tr v-for="row in data" :key="row.id" class="hover:bg-gray-100 hoverable-tr">
                 <template v-for="col in columns">
                     <td v-if="col.href" :key="col.name" class="text-left whitespace-nowrap border-b border-gray-200" :class="col.classes">
                         <a class="py-3 px-6 block w-full h-full" :href="col.href(row)">
@@ -36,3 +36,11 @@ export default {
     methods: { kebabCase }
 }
 </script>
+<style>
+tr.hoverable-tr td {
+    background-color: rgba(255, 255, 255, 1);
+}
+tr.hoverable-tr:hover td {
+    background-color: rgba(243, 244, 246, 1);
+}
+</style>
