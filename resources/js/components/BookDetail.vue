@@ -25,7 +25,7 @@
 
                     <div v-if="book.current_borrowing" class="flex flex-col mt-4 mb-6 p-3 bg-red-200 rounded md:mt-0">
                         <span>Aktuell ausgeliehen an:</span>
-                        <div class="font-medium text-gray-500 mt-2"><font-awesome-icon class="mr-1" :icon="['far', 'user-circle']" /> {{ borrower(book.current_borrowing) }}</div>
+                        <div class="font-medium text-gray-500 mt-2"><font-awesome-icon class="mr-1 opacity-60" icon="hand-holding-heart" /> {{ borrower(book.current_borrowing) }}</div>
                         <div class="text-xs mt-2"><span class="font-handwriting">{{ borrowDate(book.current_borrowing) }}</span></div>
                     </div>
 
@@ -65,7 +65,7 @@
             <template #name="{ row: borrowing }">
                 <span class="opacity-0 select-none">{{ borrower(borrowing) }}</span>
                 <a class="py-3 px-6 border-b border-gray-200 absolute inset-0 bg-white hover:bg-gray-100 flex items-center font-medium" :class="{'hover:text-pink-500': !borrowing.returned_at, 'hover:text-blue-500': borrowing.returned_at}">
-                    <font-awesome-icon class="hidden md:inline mr-2 opacity-70" :icon="['far', 'user-circle']"></font-awesome-icon>
+                    <font-awesome-icon class="hidden md:inline mr-2 opacity-70" icon="hand-holding-heart"></font-awesome-icon>
                     {{ borrower(borrowing) }}
                 </a>
             </template>

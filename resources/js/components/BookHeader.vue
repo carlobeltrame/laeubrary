@@ -4,7 +4,7 @@
             <font-awesome-icon class="ml-1 mr-2 opacity-80" icon="book"></font-awesome-icon> {{ book.name }}
         </h2>
         <div v-if="this.book.current_borrowing" class="flex flex-col mt-4 md:mt-0">
-            <div class="font-medium text-gray-500"><font-awesome-icon class="mr-1" :icon="['far', 'user-circle']" /> {{ borrower }}</div>
+            <div class="font-medium text-gray-500"><font-awesome-icon class="mr-1 text-gray-400" icon="hand-holding-heart" /> {{ borrower }}</div>
             <div class="text-xs mt-2"><span class="font-handwriting">{{ borrowDate }}</span></div>
         </div>
     </div>

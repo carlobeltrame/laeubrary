@@ -9,7 +9,7 @@
         </template>
         <template #current-borrowing="{ row: { current_borrowing } }">
             <div v-if="current_borrowing" class="flex flex-col">
-                <div class="font-medium text-gray-500"><font-awesome-icon class="mr-1" :icon="['far', 'user-circle']" /> {{ borrower(current_borrowing) }}</div>
+                <div class="font-medium text-gray-500"><font-awesome-icon class="mr-1 text-gray-400" icon="hand-holding-heart" /> {{ borrower(current_borrowing) }}</div>
                 <div class="text-xs mt-2"><span class="font-handwriting">{{ borrowDate(current_borrowing) }}</span></div>
             </div>
         </template>
