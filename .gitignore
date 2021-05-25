@@ -15,4 +15,5 @@ yarn-error.log
 !/public/.htaccess.docker
 !/public/favicon.png
 !/public/index.php
+!/public/finish_deployment.php
 !/public/robots.txt

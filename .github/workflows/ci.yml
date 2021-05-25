@@ -1,0 +1,72 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+#  unit-tests:
+#    name: "Unit tests"
+#    runs-on: ubuntu-latest
+#    steps:
+#
+#      - uses: actions/checkout@v2
+#
+#      - run: docker-compose up -d app db node mail
+#
+#      - uses: ./.github/actions/wait-for-container-startup
+#
+#      - run: docker-compose exec -T app vendor/bin/phpunit
+#
+#  frontend-tests:
+#    name: "Frontend tests"
+#    runs-on: ubuntu-latest
+#    steps:
+#
+#      - uses: actions/checkout@v2
+#
+#      - run: docker-compose up -d app db node mail
+#
+#      - uses: ./.github/actions/wait-for-container-startup
+#
+#      - run: docker-compose exec -T node npm run test
+
+  start-deployment:
+    name: "Checking whether to start deployment"
+    if: ${{ github.event_name == 'push' && ('refs/heads/main' == github.ref) }}
+#    needs:
+#      - unit-tests
+#      - frontend-tests
+    runs-on: ubuntu-latest
+    steps:
+
+      - run: 'echo "Starting deployment!"'
+
+  deploy:
+    name: "Deploy"
+    environment: prod
+    needs: start-deployment
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - run: sudo apt-get update -y && sudo apt-get install -y lftp
+
+      - uses: ./.github/actions/deploy
+        with:
+          ftp-username: ${{ secrets.FTP_USERNAME }}
+          ftp-password: ${{ secrets.FTP_PASSWORD }}
+          ftp-host: ${{ secrets.FTP_HOST }}
+          app-key: ${{ secrets.APP_KEY }}
+          app-url: ${{ secrets.APP_URL }}
+          db-host: ${{ secrets.DB_HOST }}
+          db-database: ${{ secrets.DB_DATABASE }}
+          db-username: ${{ secrets.DB_USERNAME }}
+          db-password: ${{ secrets.DB_PASSWORD }}
+          mail-host: ${{ secrets.MAIL_HOST }}
+          mail-port: ${{ secrets.MAIL_PORT }}
+          mail-username: ${{ secrets.MAIL_USERNAME }}
+          mail-password: ${{ secrets.MAIL_PASSWORD }}
+          mail-from-address: ${{ secrets.MAIL_FROM_ADDRESS }}

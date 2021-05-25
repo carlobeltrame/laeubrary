@@ -1,0 +1,103 @@
+name: Deploy
+description: Deploy Läubrary
+inputs:
+
+  ftp-username:
+    description: 'The FTP username that will be used to log in to the server'
+    required: true
+
+  ftp-password:
+    description: 'The FTP password that will be used to log in to the server'
+    required: true
+
+  ftp-host:
+    description: 'The FTP server where to deploy'
+    required: true
+
+  app-env:
+    description: 'The environment type that will be deployed'
+    required: false
+    default: production
+
+  app-key:
+    description: 'The application encryption key'
+    required: true
+
+  app-debug:
+    description: 'Whether to activate debug mode on the deployed environment'
+    required: false
+    default: 'false'
+
+  app-url:
+    description: 'The url under which the application will be available'
+    required: true
+
+  db-host:
+    description: 'The URL of the database server'
+    required: false
+    default: localhost
+
+  db-database:
+    description: 'The database name in the database server'
+    required: false
+    default: laubrary_
+
+  db-username:
+    description: 'The username that will be used to log in to the database'
+    required: true
+
+  db-password:
+    description: 'The password that will be used to log in to the database'
+    required: true
+
+  mail-host:
+    description: 'The location of the SMTP server to send emails'
+    required: false
+    default: localhost
+
+  mail-port:
+    description: 'The port on which the SMTP server listens'
+    required: false
+    default: '1025'
+
+  mail-username:
+    description: 'The username used to sign in to the SMTP server'
+    required: true
+
+  mail-password:
+    description: 'The username used to sign in to the SMTP server'
+    required: true
+
+  mail-encryption:
+    description: 'The encryption used for sending emails'
+    required: false
+    default: SSL
+
+  mail-from-address:
+    description: 'The sender address that will be used for outgoing emails'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+
+    - run: .github/actions/deploy/deploy.sh
+      shell: bash
+      env:
+        FTP_USERNAME: ${{ inputs.ftp-username }}
+        FTP_PASSWORD: ${{ inputs.ftp-password }}
+        FTP_HOST: ${{ inputs.ftp-host }}
+        APP_ENV: ${{ inputs.app-env }}
+        APP_KEY: ${{ inputs.app-key }}
+        APP_DEBUG: ${{ inputs.app-debug }}
+        APP_URL: ${{ inputs.app-url }}
+        DB_HOST: ${{ inputs.db-host }}
+        DB_DATABASE: ${{ inputs.db-database }}
+        DB_USERNAME: ${{ inputs.db-username }}
+        DB_PASSWORD: ${{ inputs.db-password }}
+        MAIL_HOST: ${{ inputs.mail-host }}
+        MAIL_PORT: ${{ inputs.mail-port }}
+        MAIL_USERNAME: ${{ inputs.mail-username }}
+        MAIL_PASSWORD: ${{ inputs.mail-password }}
+        MAIL_ENCRYPTION: ${{ inputs.mail-encryption }}
+        MAIL_FROM_ADDRESS: ${{ inputs.mail-from-address }}

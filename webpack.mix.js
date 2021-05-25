@@ -15,4 +15,4 @@ mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'pub
     require('postcss-import'),
     require('tailwindcss'),
     require('autoprefixer'),
-]).vue().version().copyDirectory('resources/images', 'public/images');
+]).vue().version();
