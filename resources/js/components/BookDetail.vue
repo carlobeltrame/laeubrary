@@ -64,7 +64,7 @@
 
         <h3 v-if="borrowings.length" class="font-medium text-xl text-gray-600 mt-6 mb-3">History</h3>
 
-        <data-table v-if="borrowings.length" :data="borrowings" :columns="columns" style="max-height: calc(100vh - 100px)">
+        <data-table v-if="borrowings.length" :data="borrowings" :columns="columns" class="shadow" style="max-height: calc(100vh - 100px)">
             <template #name="{ row: borrowing }">
                 <span class="opacity-0 select-none">{{ borrower(borrowing) }}</span>
                 <a class="py-3 px-6 border-b border-gray-200 absolute inset-0 flex items-center font-medium" :class="{'hover:text-pink-500': !borrowing.returned_at, 'hover:text-blue-500': borrowing.returned_at}">

@@ -1,9 +1,9 @@
 <template>
-    <div class="w-full max-w-full overflow-x-scroll">
+    <div class="w-full max-w-full overflow-x-auto">
         <table class="table-auto w-full">
             <thead>
             <tr>
-                <th v-for="col in columns" :key="col.name" class="py-3 px-6 text-left sticky top-0 bg-gray-200 text-gray-600 uppercase text-sm leading-normal z-10" :class="col.headerClasses">{{ col.label }}</th>
+                <th v-for="col in columns" :key="col.name" class="py-3 px-6 text-left sticky top-0 bg-blue-100 text-gray-600 uppercase text-sm leading-normal z-10" :class="col.headerClasses">{{ col.label }}</th>
             </tr>
             </thead>
             <tbody class="text-gray-600 text-sm font-light">
