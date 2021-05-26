@@ -58,7 +58,7 @@
             </div>
         </div>
 
-        {{ book.description }}
+        <editable-text :value="book.description" name="description" type="textarea" :method="routeMethod('books.update')" :action="route('books.update', { book: book.id })" edit-class="w-full lg:w-1/2" placeholder="Beschreibung"></editable-text>
 
         <div class="clear-both"></div>
 
@@ -92,10 +92,11 @@ import CsrfToken from './CsrfToken'
 import ModalDialog from './ModalDialog'
 import MultiSelect from '@vueform/multiselect/dist/multiselect.vue2.js'
 import QrcodeVue from 'qrcode.vue'
+import EditableText from './EditableText'
 
 export default {
     name: 'BookDetail',
-    components: { ModalDialog, CsrfToken, SubmitButton, DataTable, MultiSelect, QrcodeVue },
+    components: { EditableText, ModalDialog, CsrfToken, SubmitButton, DataTable, MultiSelect, QrcodeVue },
     props: {
         book: { type: Object, required: true },
     },

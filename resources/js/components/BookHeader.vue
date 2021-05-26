@@ -1,7 +1,9 @@
 <template>
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
         <h2 class="font-semibold text-xl text-gray-700 leading-tight">
-            <font-awesome-icon class="ml-1 mr-2 opacity-80" icon="book"></font-awesome-icon> {{ book.name }}
+            <font-awesome-icon class="ml-1 mr-2 opacity-80" icon="book"></font-awesome-icon>
+            <editable-text v-if="book.id" :value="book.name" name="name" :method="routeMethod('books.update')" :action="route('books.update', { book: book.id })" placeholder="Name"></editable-text>
+            <template v-else>{{ book.name }}</template>
         </h2>
         <div v-if="this.book.current_borrowing" class="flex flex-col mt-4 md:mt-0">
             <div class="font-medium text-gray-500"><font-awesome-icon class="mr-1 text-gray-400" icon="hand-holding-heart" /> {{ borrower }}</div>
@@ -10,9 +12,10 @@
     </div>
 </template>
 <script>
+import EditableText from './EditableText'
 export default {
     name: 'BookHeader',
-    components: {},
+    components: { EditableText },
     props: {
         book: { type: Object, required: true }
     },
