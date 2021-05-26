@@ -1,15 +1,12 @@
 <template>
-    <form v-if="editing" :method="method === 'GET' ? method : 'POST'" :action="action" class="inline">
-        <csrf-token />
-        <input type="hidden" name="_method" :value="method" />
-        <input-field :name="name" :type="type" :class="{'inline-block': type !== 'textarea'}" :classes="editClass" :value="value" :placeholder="placeholder" />
+    <form v-if="editing" :method="method === 'GET' ? method : 'POST'" :action="action" class="inline"><!--
+        --><csrf-token /><!--
+        --><input type="hidden" name="_method" :value="method" /><!--
+        --><input-field :name="name" :type="type" :class="{'inline-block': type !== 'textarea'}" :classes="editClass" :value="value" :placeholder="placeholder" />
         <submit-button @click="editing = false">Abbrechen</submit-button>
         <submit-button class="bg-blue-500 border-transparent text-white hover:bg-blue-700 active:bg-blue-900">OK</submit-button>
     </form>
-    <span v-else class="hover-editable">
-        {{ value }}
-        <font-awesome-icon icon="pen-nib" class="edit-button text-blue-500 ml-3" :class="{ invisible: value }" @click="editing = true"></font-awesome-icon>
-    </span>
+    <span v-else class="hover-editable">{{ value }} <font-awesome-icon icon="pen-nib" class="edit-button text-blue-500 ml-3 hover:text-blue-800" :class="{ invisible: value }" @click="editing = true"></font-awesome-icon></span>
 </template>
 <script>
 import InputField from './InputField'

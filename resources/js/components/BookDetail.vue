@@ -58,7 +58,7 @@
             </div>
         </div>
 
-        <editable-text :value="book.description" name="description" type="textarea" :method="routeMethod('books.update')" :action="route('books.update', { book: book.id })" edit-class="w-full lg:w-1/2" placeholder="Beschreibung"></editable-text>
+        <editable-text :value="book.description" name="description" type="textarea" :method="routeMethod('books.update')" :action="route('books.update', { book: book.id })" edit-class="w-full lg:w-1/2" placeholder="Beschreibung" class="whitespace-pre-wrap"></editable-text>
 
         <div class="clear-both"></div>
 
