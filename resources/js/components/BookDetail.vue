@@ -42,6 +42,7 @@
                         required
                         :can-deselect="false"
                         no-results-text="Niemand gefunden."
+                        no-options-text="Niemand gefunden."
                         class="mb-2"
                         @search-change="borrowerSearchUpdated"
                     >
