@@ -1,13 +1,12 @@
 <template>
     <span v-if="large">
-        <img :src="logoLarge" width="200" height="200">
-        <img :src="laeubrary" width="200">
+        <img :src="logo" alt="Logo" width="200" height="200">
+        <img :src="laeubrary" alt="Läubrary" width="200">
     </span>
-    <img v-else :src="logoSmall" width="40" height="40">
+    <img v-else :src="logo" alt="logo" width="60" height="60">
 </template>
 <script>
-import logoLarge from '../../images/logo-large.png'
-import logoSmall from '../../images/logo-small.png'
+import logo from '../../images/logo-large.png'
 import laeubrary from '../../images/laeubrary.png'
 export default {
     name: 'ApplicationLogo',
@@ -15,8 +14,7 @@ export default {
         large: { type: Boolean, default: false }
     },
     data: () => ({
-        logoLarge,
-        logoSmall,
+        logo,
         laeubrary
     })
 }

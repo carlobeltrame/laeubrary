@@ -16,7 +16,7 @@
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
-        <div id="app" class="min-h-screen bg-gray-100 text-gray-900">
+        <div id="app" class="min-h-screen bg-green-50 text-gray-900">
             {{ $slot }}
         </div>
         <div id="laravel-data" data-laravel="{{ json_encode([

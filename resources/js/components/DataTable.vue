@@ -3,7 +3,7 @@
         <table class="w-full" :class="tableClass">
             <thead>
             <tr class="hidden md:table-row">
-                <th v-for="col in columns" :key="col.name" class="py-3 px-6 text-left sticky top-0 bg-blue-100 text-gray-600 uppercase text-sm leading-normal z-10" :class="col.headerClasses">{{ col.label }}</th>
+                <th v-for="col in columns" :key="col.name" class="py-3 px-6 text-left sticky top-0 bg-brown-100 text-gray-600 uppercase text-sm leading-normal z-10" :class="col.headerClasses">{{ col.label }}</th>
             </tr>
             </thead>
             <tbody class="text-gray-600 text-sm font-light">
@@ -36,6 +36,9 @@ export default {
 }
 </script>
 <style>
+.bg-brown-100 {
+    background-color: rgb(255, 199, 150);
+}
 @media (min-width: 768px) {
     tr.hoverable-tr td {
         background-color: rgba(255, 255, 255, 1);

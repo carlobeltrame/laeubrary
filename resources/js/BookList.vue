@@ -1,5 +1,5 @@
 <template>
-    <data-table :data="data" :columns="columns" style="max-height: calc(100vh - 100px)">
+    <data-table :data="data" :columns="columns" style="max-height: calc(100vh - 120px)">
         <template #name="{ row: { name, id, current_borrowing } }">
             <span class="opacity-0 select-none">{{ name }}</span>
             <a :href="'/books/' + id" class="py-3 px-6 md:border-b border-gray-200 absolute inset-0 flex items-center" :class="{'hover:text-pink-500': current_borrowing, 'hover:text-blue-500': !current_borrowing}">
