@@ -4,6 +4,8 @@
         <book-header :book="{{ json_encode([ 'name' => 'Neues Buch erfassen' ]) }}"></book-header>
     </x-slot>
 
-    <book-create class="max-w-full"></book-create>
+    <main class="bg-white shadow-sm sm:rounded-lg max-h-full overflow-hidden">
+        <book-create class="max-w-full"></book-create>
+    </main>
 
 </x-app>
