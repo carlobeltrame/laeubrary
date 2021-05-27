@@ -2,7 +2,7 @@
 <auth-card>
     <template #logo>
         <a href="/">
-            <application-logo class="w-20 h-20 fill-current text-gray-500" />
+            <application-logo large class="fill-current text-gray-500" />
         </a>
     </template>
 
