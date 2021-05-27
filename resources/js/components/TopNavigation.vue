@@ -12,9 +12,9 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex text-xl">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-2 sm:flex text-xl">
                     <nav-link :href="route('home')">
-                        Läubrary
+                        <img :src="laeubrary" width="100">
                     </nav-link>
                 </div>
             </div>
@@ -110,6 +110,7 @@ import DropdownMenu from './DropdownMenu'
 import ResponsiveNavLink from './ResponsiveNavLink'
 import DropdownLink from './DropdownLink'
 import CsrfToken from './CsrfToken'
+import laeubrary from '../../images/laeubrary.png'
 
 export default {
     name: 'TopNagivation',
@@ -122,7 +123,8 @@ export default {
         NavLink
     },
     data: () => ({
-        open: false
+        open: false,
+        laeubrary,
     })
 }
 </script>
