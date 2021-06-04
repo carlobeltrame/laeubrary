@@ -1,7 +1,7 @@
 <template>
     <span v-if="large">
-        <img :src="logo" alt="Logo" width="200" height="200">
-        <img :src="laeubrary" alt="Läubrary" width="200">
+        <img :src="logo" alt="Logo" width="200" height="200" class="filter drop-shadow-md">
+        <img :src="laeubrary" alt="Läubrary" width="200" class="filter drop-shadow-lg">
     </span>
     <img v-else :src="logo" alt="logo" width="60" height="60">
 </template>
