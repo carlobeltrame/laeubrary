@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('borrowings', \App\Http\Controllers\BorrowingController::class);
 
     Route::resource('borrowers', \App\Http\Controllers\BorrowerController::class);
+    Route::get('/borrowers.json', [\App\Http\Controllers\BorrowerController::class, 'available'])->name('borrowers.available');
 
     Route::get('/qrcodes', [\App\Http\Controllers\BookController::class, 'qrcodeList'])->name('qrcodes.list');
     Route::get('/qrcodes/print', [\App\Http\Controllers\BookController::class, 'qrcodePrint'])->name('qrcodes.print');

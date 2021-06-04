@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import clickOutside from './vue-directive-click-outside'
 import VueCompositionAPI from '@vue/composition-api'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faBook, faQrcode, faHandHoldingHeart, faTimes, faBookMedical, faPenNib } from '@fortawesome/free-solid-svg-icons'
+import { faBook, faQrcode, faHandHoldingHeart, faTimes, faBookMedical, faPenNib, faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import TopNavigation from './components/TopNavigation'
 import LoginScreen from './auth/LoginScreen'
@@ -19,8 +19,10 @@ import BookDetail from './components/BookDetail'
 import BookCreate from './components/BookCreate'
 import QrcodeSelection from './components/QrcodeSelection'
 import QrcodePrint from './components/QrcodePrint'
+import BorrowerHeader from './components/BorrowerHeader'
+import BorrowerDetail from './components/BorrowerDetail'
 
-library.add(faBook, faQrcode, faHandHoldingHeart, faTimes, faBookMedical, faPenNib)
+library.add(faBook, faQrcode, faHandHoldingHeart, faTimes, faBookMedical, faPenNib, faUserCircle)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 const element = document.getElementById('laravel-data')
@@ -96,5 +98,7 @@ const app = new Vue({
         BookCreate,
         QrcodeSelection,
         QrcodePrint,
+        BorrowerHeader,
+        BorrowerDetail,
     }
 })

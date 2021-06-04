@@ -11,7 +11,7 @@ class BorrowingController extends Controller
 {
     public function return(Borrowing $borrowing) {
         $borrowing->update(['returned_at' => Carbon::now()]);
-        return redirect()->route('books.show', [ 'book' => $borrowing->book_id ]);
+        return redirect()->back();
     }
 
     public function store(Request $request) {

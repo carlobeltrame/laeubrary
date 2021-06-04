@@ -67,7 +67,7 @@
         <data-table v-if="borrowings.length" :data="borrowings" :columns="columns" class="md:shadow">
             <template #name="{ row: borrowing }">
                 <span class="opacity-0 select-none">{{ borrower(borrowing) }}</span>
-                <a class="py-3 px-6 md:border-b border-gray-200 absolute inset-0 flex items-center font-medium" :class="{'hover:text-pink-500': !borrowing.returned_at, 'hover:text-blue-500': borrowing.returned_at}">
+                <a :href="route('borrowers.show', { borrower: borrowing.borrower_id })" class="py-3 px-6 md:border-b border-gray-200 absolute inset-0 flex items-center font-medium" :class="{'hover:text-pink-500': !borrowing.returned_at, 'hover:text-blue-500': borrowing.returned_at}">
                     <font-awesome-icon class="hidden md:inline mr-2 opacity-70" icon="hand-holding-heart"></font-awesome-icon>
                     {{ borrower(borrowing) }}
                 </a>
@@ -139,8 +139,7 @@ export default {
             this.borrowerQuery = query
         },
         async fetchOptions (query) {
-            if (!query) return (await window.axios.get('/borrowers')).data
-            return (await window.axios.get('/borrowers?query=' + query)).data
+            return (await window.axios.get(this.route('borrowers.available', { query: query || '' }))).data
         },
         addNewBorrower () {
             const emptyQuery = !this.borrowerQuery

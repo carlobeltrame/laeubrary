@@ -5,8 +5,8 @@
             <editable-text v-if="book.id" :value="book.name" name="name" :method="routeMethod('books.update')" :action="route('books.update', { book: book.id })" placeholder="Name"></editable-text>
             <template v-else>{{ book.name }}</template>
         </h2>
-        <div v-if="this.book.current_borrowing" class="flex flex-col mt-4 md:mt-0">
-            <div class="font-medium text-gray-500"><font-awesome-icon class="mr-1 text-gray-400" icon="hand-holding-heart" /> {{ borrower }}</div>
+        <div v-if="book.current_borrowing" class="flex flex-col mt-4 md:mt-0">
+            <a :href="route('borrowers.show', { borrower: book.current_borrowing.borrower_id })" class="font-medium text-gray-500"><font-awesome-icon class="mr-1 text-gray-400" icon="hand-holding-heart" /> {{ borrower }}</a>
             <div class="text-xs mt-2"><span class="font-handwriting">{{ borrowDate }}</span></div>
         </div>
     </div>
