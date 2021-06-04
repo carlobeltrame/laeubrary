@@ -10,9 +10,8 @@
 
                     <template #header><p class="text-lg font-medium leading-6 text-gray-900"><font-awesome-icon class="mr-2 opacity-70" icon="qrcode"></font-awesome-icon> QR-Code für {{ book.name }}</p></template>
 
-                    <div class="flex flex-col items-center">
-                        <qrcode-vue class="mb-4" :value="qrCodeLocation" size="300" level="H" />
-                        <a :href="qrCodeLocation">{{ qrCodeLocation }}</a>
+                    <div class="w-full flex justify-center">
+                        <book-qrcode :book-id="book.id" :book-name="book.name" style="max-width: 11rem;"/>
                     </div>
                 </modal-dialog>
 
@@ -92,12 +91,12 @@ import SubmitButton from './SubmitButton'
 import CsrfToken from './CsrfToken'
 import ModalDialog from './ModalDialog'
 import MultiSelect from '@vueform/multiselect/dist/multiselect.vue2.js'
-import QrcodeVue from 'qrcode.vue'
 import EditableText from './EditableText'
+import BookQrcode from './BookQrcode'
 
 export default {
     name: 'BookDetail',
-    components: { EditableText, ModalDialog, CsrfToken, SubmitButton, DataTable, MultiSelect, QrcodeVue },
+    components: { BookQrcode, EditableText, ModalDialog, CsrfToken, SubmitButton, DataTable, MultiSelect},
     props: {
         book: { type: Object, required: true },
     },
@@ -126,11 +125,6 @@ export default {
                 return this.$date(b.created_at).unix() - this.$date(a.created_at).unix()
             })
         },
-        qrCodeLocation () {
-            const location = new URL(window.location)
-            location.hash = '#borrow'
-            return location.toString()
-        }
     },
     methods: {
         borrower (borrowing) {

@@ -22,6 +22,9 @@
             <!-- Settings Dropdown -->
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
+                <a :href="route('qrcodes.list')" class="mr-10 flex items-center text-sm font-medium text-green-800 hover:text-green-900 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                    <div class="pt-1"><font-awesome-icon class="mr-1 opacity-80" icon="qrcode"></font-awesome-icon> QR-Codes drucken</div>
+                </a>
                 <a :href="route('books.create')" class="mr-10 flex items-center text-sm font-medium text-green-800 hover:text-green-900 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                     <div class="pt-1"><font-awesome-icon class="mr-1 opacity-80" icon="book-medical"></font-awesome-icon> Neues Buch</div>
                 </a>
@@ -69,6 +72,9 @@
         <div class="pt-2 pb-3 space-y-1">
             <responsive-nav-link :href="route('home')">
                 Übersicht
+            </responsive-nav-link>
+            <responsive-nav-link :href="route('qrcodes.list')">
+                <font-awesome-icon class="mr-1 opacity-80" icon="qrcode"></font-awesome-icon> QR-Codes drucken
             </responsive-nav-link>
             <responsive-nav-link :href="route('books.create')">
                 <font-awesome-icon class="mr-1 opacity-80" icon="book-medical"></font-awesome-icon> Neues Buch

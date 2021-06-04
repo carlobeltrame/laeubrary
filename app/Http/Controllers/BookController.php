@@ -43,4 +43,20 @@ class BookController extends Controller {
         ]), ['name', 'description']));
         return redirect()->back();
     }
+
+    public function qrcodeList(Request $request) {
+        /** @var User $user */
+        $user = Auth::user();
+        return view('qrcode.list', [
+            'books' => $user->books()->orderBy('created_at', 'DESC')->get()
+        ]);
+    }
+
+    public function qrcodePrint(Request $request) {
+        /** @var User $user */
+        $user = Auth::user();
+        return view('qrcode.print', [
+            'books' => $user->books()->whereIn('id', explode(',', $request->query('books')))->orderBy('created_at', 'DESC')->get()
+        ]);
+    }
 }

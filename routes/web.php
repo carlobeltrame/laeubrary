@@ -24,6 +24,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('borrowers', \App\Http\Controllers\BorrowerController::class);
 
+    Route::get('/qrcodes', [\App\Http\Controllers\BookController::class, 'qrcodeList'])->name('qrcodes.list');
+    Route::get('/qrcodes/print', [\App\Http\Controllers\BookController::class, 'qrcodePrint'])->name('qrcodes.print');
 });
 
 require __DIR__.'/auth.php';

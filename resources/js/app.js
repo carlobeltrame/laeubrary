@@ -17,6 +17,8 @@ import BookList from './BookList'
 import BookHeader from './components/BookHeader'
 import BookDetail from './components/BookDetail'
 import BookCreate from './components/BookCreate'
+import QrcodeSelection from './components/QrcodeSelection'
+import QrcodePrint from './components/QrcodePrint'
 
 library.add(faBook, faQrcode, faHandHoldingHeart, faTimes, faBookMedical, faPenNib)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
@@ -92,5 +94,7 @@ const app = new Vue({
         BookHeader,
         BookDetail,
         BookCreate,
+        QrcodeSelection,
+        QrcodePrint,
     }
 })
