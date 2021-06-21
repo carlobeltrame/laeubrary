@@ -32,21 +32,27 @@ jobs:
 #
 #      - run: docker-compose exec -T node npm run test
 
-  start-deployment:
-    name: "Checking whether to start deployment"
-    if: ${{ github.event_name == 'push' && ('refs/heads/main' == github.ref) }}
-#    needs:
-#      - unit-tests
-#      - frontend-tests
+  get-environment-name:
+    name: "Extract environment name"
     runs-on: ubuntu-latest
+    outputs:
+      environment: ${{ steps.extract.outputs.environment }}
     steps:
-
-      - run: 'echo "Starting deployment!"'
+      - id: extract
+        # You can run any logic you want here to map refs to environment names
+        run: echo "::set-output name=environment::$(echo $GITHUB_REF | sed -e '/^refs\/heads\/deploy-\(.*\)$/!d;s//\1/')"
+      - env:
+          EXTRACTED: ${{ steps.extract.outputs.environment }}
+        run: 'echo "Extracted environment name: $EXTRACTED"'
 
   deploy:
     name: "Deploy"
-    environment: prod
-    needs: start-deployment
+    if: ${{ github.event_name == 'push' && needs.get-environment-name.outputs.environment }}
+    needs:
+      - get-environment-name
+#      - unit-tests
+#      - frontend-tests
+    environment: ${{ needs.get-environment-name.outputs.environment }}
     runs-on: ubuntu-latest
     steps:
 
