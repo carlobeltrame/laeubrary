@@ -32,9 +32,21 @@ jobs:
 #
 #      - run: docker-compose exec -T node npm run test
 
+  start-deployment:
+    name: "Checking whether to start deployment"
+    if: ${{ github.event_name == 'push' && ('refs/heads/main' == github.ref) }}
+#    needs:
+#      - unit-tests
+#      - frontend-tests
+    runs-on: ubuntu-latest
+    steps:
+
+      - run: 'echo "Starting deployment!"'
+
   deploy:
     name: "Deploy"
     environment: prod
+    needs: start-deployment
     runs-on: ubuntu-latest
     steps:
 
