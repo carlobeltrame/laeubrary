@@ -2,7 +2,7 @@
     <data-table :data="data" :columns="columns" style="max-height: calc(100vh - 120px)">
         <template #name="{ row: { name, id, current_borrowing } }">
             <span class="opacity-0 select-none">{{ name }}</span>
-            <a :href="'/books/' + id" class="py-3 px-6 md:border-b border-gray-200 absolute inset-0 flex items-center" :class="{'hover:text-pink-500': current_borrowing, 'hover:text-blue-500': !current_borrowing}">
+            <a :href="route('books.show', { book: id })" class="py-3 px-6 md:border-b border-gray-200 absolute inset-0 flex items-center" :class="{'hover:text-pink-500': current_borrowing, 'hover:text-blue-500': !current_borrowing}">
                 <font-awesome-icon class="hidden md:inline mr-2 opacity-50" :icon="['fas', 'book']"></font-awesome-icon>
                 {{ name }}
             </a>

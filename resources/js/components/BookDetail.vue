@@ -23,9 +23,13 @@
                     <template #header><p class="text-lg font-medium leading-6 text-gray-900"><font-awesome-icon class="mr-2 opacity-70" icon="hand-holding-heart"></font-awesome-icon> {{ book.name }} ausleihen</p></template>
 
                     <div v-if="book.current_borrowing" class="flex flex-col mt-4 mb-6 p-3 bg-red-200 rounded md:mt-0">
-                        <span>Aktuell ausgeliehen an:</span>
-                        <div class="font-medium text-gray-500 mt-2"><font-awesome-icon class="mr-1 opacity-60" icon="hand-holding-heart" /> {{ borrower(book.current_borrowing) }}</div>
-                        <div class="text-xs mt-2"><span class="font-handwriting">{{ borrowDate(book.current_borrowing) }}</span></div>
+                        <form :method="routeMethod('borrowings.return')" :action="route('borrowings.return', { borrowing: book.current_borrowing.id, returnToBorrowing: true })">
+                            <csrf-token />
+                            <submit-button class="float-right bg-white border-gray-300 text-gray-500 hover:bg-gray-200 active:bg-gray-200">Zurückgegeben</submit-button>
+                            <span>Aktuell ausgeliehen an:</span>
+                            <div class="font-medium text-gray-500 mt-2"><font-awesome-icon class="mr-1 opacity-60" icon="hand-holding-heart" /> {{ borrower(book.current_borrowing) }}</div>
+                            <div class="text-xs mt-2"><span class="font-handwriting">{{ borrowDate(book.current_borrowing) }}</span></div>
+                        </form>
                     </div>
 
                     <multi-select

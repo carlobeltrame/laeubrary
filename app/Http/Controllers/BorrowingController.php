@@ -9,8 +9,11 @@ use Illuminate\Http\Request;
 
 class BorrowingController extends Controller
 {
-    public function return(Borrowing $borrowing) {
+    public function return(Borrowing $borrowing, Request $request) {
         $borrowing->update(['returned_at' => Carbon::now()]);
+        if ($request->get('returnToBorrowing')) {
+            return redirect()->to(route('books.show', ['book' => $borrowing->book->id]) . '#borrow');
+        }
         return redirect()->back();
     }
 
